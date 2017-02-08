@@ -6,10 +6,10 @@ import { Component } from '@angular/core';
     template: `
   <div>
     <main class="main">
-        content here
+        <notes-container></notes-container>
     </main>
   </div>
   `
 })
 
-export class Main { }; 
+export class Main { };
