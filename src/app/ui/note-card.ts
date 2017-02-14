@@ -1,8 +1,8 @@
 import {
-  Component,
-  Input
+    Component,
+    Input
 
- } from '@angular/core';
+} from '@angular/core';
 
 @Component({
     selector: 'note-card',
@@ -39,8 +39,8 @@ import {
 }
     `],
     template: `
-<div class="note-card row shadow-1">
-  <div class="icon" (click)="onChecked()">
+<div class="note-card row shadow-1"  (mouseenter)="toggleChecked()" (mouseleave)="toggleChecked()">
+  <div class="icon" (click)="onChecked()" *ngIf="showCheck">
     <i class="material-icons">check</i>
   </div>
   <div class="col-xs-12 title">
@@ -54,5 +54,15 @@ import {
     `
 })
 export class NoteCard {
-@Input() note = {};
- }
+    @Input() note = {};
+    showCheck: boolean = false;
+
+    toggleChecked() {
+        this.showCheck = !this.showCheck;
+    }
+
+    onChecked() {
+        console.log('yes');
+    }
+
+}

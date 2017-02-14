@@ -15,12 +15,16 @@ import { Component } from '@angular/core';
     template: `
     <div class="row center-xs notes">
       <div class="col-xs-6 creator">
-        note creator here
+        <note-creator (createNote)="onCreateNote($event)"></note-creator>
       </div>
       <div class="notes col-xs-8">
         <div class="row between-xs">
-        <!-- Appel de la card -->
-          <note-card class="col-xs-4" [note]="note">
+
+          <note-card
+           class="col-xs-4"
+           [note]="note"
+           *ngFor= "let note of notes; let i = index"
+          (checked)="onNoteChecked($event, i)" >
           </note-card>
         </div>
       </div>
@@ -29,5 +33,13 @@ import { Component } from '@angular/core';
     `
 })
 export class  NotesContainer {
-  note = {title: 'Voici le titre', value: 'blabla'}
+  notes = [{title: 'Voici le titre', value: 'blabla'}];
+
+  onNoteChecked(note, i){
+    this.notes.splice(i, 1);
+  }
+
+  onCreateNote(note){
+    this.notes.push(note);
+  }
 }
